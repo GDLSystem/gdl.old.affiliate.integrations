@@ -41,4 +41,19 @@
     <None Remove="Logs\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="..\Configs\globalconfigs.dev.json" Link="Configs\globalconfigs.dev.json" />
+    <Content Include="..\Configs\globalconfigs.json" Link="Configs\globalconfigs.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Configs\globalconfigs.live.json">
+      <Link>Configs\globalconfigs.live.json</Link>
+    </Content>
+    <Content Include="..\Configs\globalconfigs.test.json">
+      <Link>Configs\globalconfigs.test.json</Link>
+    </Content>
+    <Content Include="..\Configs\globalconfigs.uat.json">
+      <Link>Configs\globalconfigs.uat.json</Link>
+    </Content>
+  </ItemGroup>
 </Project>

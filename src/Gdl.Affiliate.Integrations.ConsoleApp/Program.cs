@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -46,9 +47,22 @@ namespace Gdl.Affiliate.Integrations.ConsoleApp
             Host.CreateDefaultBuilder(args)
                 .UseAutofac()
                 .UseSerilog()
-                .ConfigureAppConfiguration((context, config) =>
+                .ConfigureAppConfiguration((hostingContext, config) =>
                 {
-                    //setup your additional configuration sources
+                    var env = hostingContext.HostingEnvironment;
+
+                    if (!env.IsProduction())
+                    {
+                        config
+                            .AddJsonFile(Path.Combine(env.ContentRootPath, "..", "Configs/globalconfigs.json"), true, true)
+                            .AddJsonFile(Path.Combine(env.ContentRootPath, "..", $"Configs/globalconfigs.{env.EnvironmentName}.json"), true, true);
+                    }
+                    else
+                    {
+                        config
+                            .AddJsonFile("Configs/globalconfigs.json", true, true)
+                            .AddJsonFile($"Configs/globalconfigs.{env.EnvironmentName}.json", true, true);
+                    }
                 })
                 .ConfigureServices((hostContext, services) =>
                 {

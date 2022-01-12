@@ -52,19 +52,20 @@ namespace Gdl.Affiliate.Integrations
 
             Configure<AbpLocalizationOptions>(options =>
             {
-                options.Languages.Add(new LanguageInfo("ar", "ar", "العربية", "ae"));
+                // options.Languages.Add(new LanguageInfo("ar", "ar", "العربية", "ae"));
                 options.Languages.Add(new LanguageInfo("en", "en", "English", "gb"));
-                options.Languages.Add(new LanguageInfo("fi", "fi", "Finnish", "fi"));
-                options.Languages.Add(new LanguageInfo("fr", "fr", "Français", "fr"));
-                options.Languages.Add(new LanguageInfo("hi", "hi", "Hindi", "in"));
-                options.Languages.Add(new LanguageInfo("it", "it", "Italiano", "it"));
-                options.Languages.Add(new LanguageInfo("sk", "sk", "Slovak", "sk"));
-                options.Languages.Add(new LanguageInfo("tr", "tr", "Türkçe", "tr"));
-                options.Languages.Add(new LanguageInfo("sl", "sl", "Slovenščina", "si"));
-                options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文", "cn"));
-                options.Languages.Add(new LanguageInfo("zh-Hant", "zh-Hant", "繁體中文", "tw"));
-                options.Languages.Add(new LanguageInfo("de-DE", "de-DE", "Deutsche", "de"));
-                options.Languages.Add(new LanguageInfo("es", "es", "Español", "es"));
+                options.Languages.Add(new LanguageInfo("vi", "vi", "Tiếng Việt", "vi"));
+                // options.Languages.Add(new LanguageInfo("fi", "fi", "Finnish", "fi"));
+                // options.Languages.Add(new LanguageInfo("fr", "fr", "Français", "fr"));
+                // options.Languages.Add(new LanguageInfo("hi", "hi", "Hindi", "in"));
+                // options.Languages.Add(new LanguageInfo("it", "it", "Italiano", "it"));
+                // options.Languages.Add(new LanguageInfo("sk", "sk", "Slovak", "sk"));
+                // options.Languages.Add(new LanguageInfo("tr", "tr", "Türkçe", "tr"));
+                // options.Languages.Add(new LanguageInfo("sl", "sl", "Slovenščina", "si"));
+                // options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文", "cn"));
+                // options.Languages.Add(new LanguageInfo("zh-Hant", "zh-Hant", "繁體中文", "tw"));
+                // options.Languages.Add(new LanguageInfo("de-DE", "de-DE", "Deutsche", "de"));
+                // options.Languages.Add(new LanguageInfo("es", "es", "Español", "es"));
             });
 
 #if DEBUG

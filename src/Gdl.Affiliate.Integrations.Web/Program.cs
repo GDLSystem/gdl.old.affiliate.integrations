@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -44,6 +45,23 @@ namespace Gdl.Affiliate.Integrations.Web
 
         internal static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    var env = hostingContext.HostingEnvironment;
+
+                    if (!env.IsProduction())
+                    {
+                        config
+                            .AddJsonFile(Path.Combine(env.ContentRootPath, "..", "Configs/globalconfigs.json"), true, true)
+                            .AddJsonFile(Path.Combine(env.ContentRootPath, "..", $"Configs/globalconfigs.{env.EnvironmentName}.json"), true, true);
+                    }
+                    else
+                    {
+                        config
+                            .AddJsonFile("Configs/globalconfigs.json", true, true)
+                            .AddJsonFile($"Configs/globalconfigs.{env.EnvironmentName}.json", true, true);
+                    }
+                })
                 .AddAppSettingsSecretsJson()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {

@@ -1,3 +1,4 @@
+using Gdl.Affiliate.Integrations.IoC;
 using Gdl.Affiliate.Integrations.Localization;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;
@@ -20,6 +21,14 @@ using Volo.Abp.GlobalFeatures;
 
 namespace Gdl.Affiliate.Integrations
 {
+    
+    public class GlobalConfigurationModule : AbpModule
+    {
+        public override void ConfigureServices(ServiceConfigurationContext context)
+        {
+            GlobalIocInstaller.Configure(context);
+        }
+    }
     [DependsOn(
         typeof(AbpAuditLoggingDomainSharedModule),
         typeof(AbpBackgroundJobsDomainSharedModule),
@@ -33,7 +42,8 @@ namespace Gdl.Affiliate.Integrations
         typeof(TextTemplateManagementDomainSharedModule),
         typeof(LeptonThemeManagementDomainSharedModule),
         typeof(AbpGlobalFeaturesModule),
-        typeof(BlobStoringDatabaseDomainSharedModule)
+        typeof(BlobStoringDatabaseDomainSharedModule),
+        typeof(GlobalConfigurationModule)
         )]
     public class IntegrationsDomainSharedModule : AbpModule
     {

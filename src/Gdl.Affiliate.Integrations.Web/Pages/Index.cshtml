@@ -2,9 +2,16 @@
 @model Gdl.Affiliate.Integrations.Web.Pages.IndexModel
 @using Microsoft.AspNetCore.Mvc.Localization
 @using Gdl.Affiliate.Integrations.Localization
+@using Gdl.Affiliate.Integrations.Web.Menus
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
 @using Volo.Abp.Users
 @inject IHtmlLocalizer<IntegrationsResource> L
 @inject ICurrentUser CurrentUser
+@inject IPageLayout PageLayout
+
+@{
+    PageLayout.Content.Title = L["GdlAffiliateIntegration.Title"].Value;
+}
 <abp-card>
     <abp-card-header>@L["Welcome"]</abp-card-header>
     <abp-card-body>
