@@ -1,0 +1,76 @@
+@page
+@using Microsoft.AspNetCore.Authorization
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@using Gdl.Affiliate.Integrations.Permissions
+@using Gdl.Affiliate.Integrations.Web.Pages.ShopinessClicks
+@using Gdl.Affiliate.Integrations.Web.Menus
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Gdl.Affiliate.Integrations.Localization
+@inject IHtmlLocalizer<IntegrationsResource> L
+@inject IAuthorizationService Authorization
+@model IndexModel
+@inject IPageLayout PageLayout
+@{
+    PageLayout.Content.Title = L["ShopinessClicks"].Value;
+    PageLayout.Content.MenuItemName = IntegrationsMenus.ShopinessClicks;
+}
+
+@section scripts
+{
+    <abp-script src="/Pages/ShopinessClicks/index.js" />
+}
+
+@section content_toolbar {
+    @if (await Authorization.IsGrantedAsync(IntegrationsPermissions.ShopinessClicks.Create))
+    {
+        <abp-button id="NewShopinessClickButton" text="@L["NewShopinessClick"].Value" icon="plus" button-type="Primary" />
+    }
+}
+
+<abp-card>
+    <abp-card-body>
+		<abp-row class="mb-3">
+            <abp-column size-md="_12">
+                <form id="SearchForm" autocomplete="off">
+                    <div class="input-group">
+                        <input class="form-control page-search-filter-text" id="FilterText" placeholder="@L["Search"]"/>
+                        <abp-button button-type="Primary" type="submit" icon="search"/>
+                    </div>
+                </form>
+            </abp-column>
+            <abp-column size-md="_12" class="mt-3">
+                <a href="javascript:;" id="AdvancedFilterSectionToggler" class="text-decoration-none">@L["SeeAdvancedFilters"]</a>
+            </abp-column>
+        </abp-row>
+
+        <abp-row id="AdvancedFilterSection" style="display: none;">
+            <abp-column size="_3">
+                <abp-input asp-for="ClickFilterMin" label="@L["MinClick"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="ClickFilterMax" label="@L["MaxClick"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-select asp-for="AffiliateOwnershipTypeFilter" label="@L["AffiliateOwnershipType"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="CreatedAtFilterMin" label="@L["MinCreatedAt"].Value" type="date"/>
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="CreatedAtFilterMax" label="@L["MaxCreatedAt"].Value" type="date"/>
+            </abp-column>
+        </abp-row>
+
+        <abp-table striped-rows="true" id="ShopinessClicksTable">
+            <thead>
+				<tr>
+					<th>@L["Actions"]</th>
+					<th>@L["Click"]</th>
+					<th>@L["AffiliateOwnershipType"]</th>
+					<th>@L["CreatedAt"]</th>
+
+				</tr>
+            </thead>
+        </abp-table>
+    </abp-card-body>
+</abp-card>

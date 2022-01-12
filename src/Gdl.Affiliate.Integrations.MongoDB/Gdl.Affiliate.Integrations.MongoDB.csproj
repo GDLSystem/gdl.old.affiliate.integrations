@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Gdl.Affiliate.Integrations</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Gdl.Affiliate.Integrations.Core\Gdl.Affiliate.Integrations.Core.csproj" />
+    <ProjectReference Include="..\Gdl.Affiliate.Integrations.Domain\Gdl.Affiliate.Integrations.Domain.csproj" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.MongoDB" Version="5.0.1" />
+    <PackageReference Include="Volo.Abp.SettingManagement.MongoDB" Version="5.0.1" />
+    <PackageReference Include="Volo.Abp.IdentityServer.MongoDB" Version="5.0.1" />
+    <PackageReference Include="Volo.Abp.BackgroundJobs.MongoDB" Version="5.0.1" />
+    <PackageReference Include="Volo.Abp.AuditLogging.MongoDB" Version="5.0.1" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.MongoDB" Version="5.0.1" />
+    <PackageReference Include="Volo.Abp.BlobStoring.Database.MongoDB" Version="5.0.1" />
+    <PackageReference Include="Volo.Abp.Identity.Pro.MongoDB" Version="5.0.1" />
+    <PackageReference Include="Volo.Saas.MongoDB" Version="5.0.1" />
+    <PackageReference Include="Volo.Abp.LanguageManagement.MongoDB" Version="5.0.1" />
+    <PackageReference Include="Volo.Abp.TextTemplateManagement.MongoDB" Version="5.0.1" />
+  </ItemGroup>
+
+</Project>

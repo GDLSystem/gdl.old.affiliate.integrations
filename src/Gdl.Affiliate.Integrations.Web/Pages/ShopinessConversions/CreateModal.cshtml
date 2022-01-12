@@ -1,0 +1,61 @@
+@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Gdl.Affiliate.Integrations.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@using Gdl.Affiliate.Integrations.Web.Pages.ShopinessConversions
+@using Gdl.Affiliate.Integrations.ShopinessConversions;
+@using System.Globalization
+@inject IHtmlLocalizer<IntegrationsResource> L
+@model CreateModalModel
+@{
+    Layout = null;
+}
+
+<form data-ajaxForm="true" asp-page="/ShopinessConversions/CreateModal" autocomplete="off">
+    <abp-modal>
+        <abp-modal-header title="@L["NewShopinessConversion"].Value"></abp-modal-header>
+
+        <abp-modal-body>
+            
+            <abp-input asp-for="ShopinessConversion.ConversionItemId"/>
+
+            <abp-input asp-for="ShopinessConversion.ConversionId"/>
+
+            <abp-input asp-for="ShopinessConversion.Status"/>
+
+            <abp-input asp-for="ShopinessConversion.SaleAmount"/>
+
+            <abp-input asp-for="ShopinessConversion.Payout"/>
+
+            <abp-input asp-for="ShopinessConversion.PayoutBonus"/>
+
+            <abp-input asp-for="ShopinessConversion.ConversionTime"/>
+
+            <abp-input asp-for="ShopinessConversion.Platform"/>
+
+            <abp-input asp-for="ShopinessConversion.SubId1"/>
+
+            <abp-input asp-for="ShopinessConversion.SubId2"/>
+
+            <abp-input asp-for="ShopinessConversion.SubId3"/>
+
+            <abp-input asp-for="ShopinessConversion.ShopId"/>
+
+            <abp-input asp-for="ShopinessConversion.ShortKey"/>
+
+            <abp-input asp-for="ShopinessConversion.ShopName"/>
+
+            <abp-input asp-for="ShopinessConversion.ProductName"/>
+
+            <abp-input asp-for="ShopinessConversion.CategoryName"/>
+
+            <abp-input asp-for="ShopinessConversion.Campaign"/>
+
+            <abp-input asp-for="ShopinessConversion.IsHappyDay"/>
+
+            
+        </abp-modal-body>
+
+        <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
+    </abp-modal>
+</form>

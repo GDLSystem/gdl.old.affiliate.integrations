@@ -1,0 +1,33 @@
+﻿@page
+@model Gdl.Affiliate.Integrations.Web.Pages.IndexModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Gdl.Affiliate.Integrations.Localization
+@using Volo.Abp.Users
+@inject IHtmlLocalizer<IntegrationsResource> L
+@inject ICurrentUser CurrentUser
+<abp-card>
+    <abp-card-header>@L["Welcome"]</abp-card-header>
+    <abp-card-body>
+        <p>@L["LongWelcomeMessage"]</p>
+        @if (!CurrentUser.IsAuthenticated)
+        {
+            <form method="POST">
+                <input type="submit" asp-page-handler="Login" value="LOGIN" class="btn btn-primary" />
+            </form>
+        }
+        else
+        {
+            <div>
+                <h3>Current claims:</h3>
+                <ul>
+                    @foreach (var claim in CurrentUser.GetAllClaims().OrderBy(c => c.Type))
+                    {
+                        <li>@claim.Type: <strong>@claim.Value</strong></li>
+                    }
+                </ul>
+            </div>
+        }
+        <hr />
+        <p class="text-end"><a href="https://abp.io?ref=tmpl" target="_blank">abp.io</a></p>
+    </abp-card-body>
+</abp-card>

@@ -1,0 +1,142 @@
+@page
+@using Microsoft.AspNetCore.Authorization
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@using Gdl.Affiliate.Integrations.Permissions
+@using Gdl.Affiliate.Integrations.Web.Pages.ShopinessConversions
+@using Gdl.Affiliate.Integrations.Web.Menus
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Gdl.Affiliate.Integrations.Localization
+@inject IHtmlLocalizer<IntegrationsResource> L
+@inject IAuthorizationService Authorization
+@model IndexModel
+@inject IPageLayout PageLayout
+@{
+    PageLayout.Content.Title = L["ShopinessConversions"].Value;
+    PageLayout.Content.MenuItemName = IntegrationsMenus.ShopinessConversions;
+}
+
+@section scripts
+{
+    <abp-script src="/Pages/ShopinessConversions/index.js" />
+}
+
+@section content_toolbar {
+    @if (await Authorization.IsGrantedAsync(IntegrationsPermissions.ShopinessConversions.Create))
+    {
+        <abp-button id="NewShopinessConversionButton" text="@L["NewShopinessConversion"].Value" icon="plus" button-type="Primary" />
+    }
+}
+
+<abp-card>
+    <abp-card-body>
+		<abp-row class="mb-3">
+            <abp-column size-md="_12">
+                <form id="SearchForm" autocomplete="off">
+                    <div class="input-group">
+                        <input class="form-control page-search-filter-text" id="FilterText" placeholder="@L["Search"]"/>
+                        <abp-button button-type="Primary" type="submit" icon="search"/>
+                    </div>
+                </form>
+            </abp-column>
+            <abp-column size-md="_12" class="mt-3">
+                <a href="javascript:;" id="AdvancedFilterSectionToggler" class="text-decoration-none">@L["SeeAdvancedFilters"]</a>
+            </abp-column>
+        </abp-row>
+
+        <abp-row id="AdvancedFilterSection" style="display: none;">
+            <abp-column size="_3">
+                <abp-input asp-for="ConversionItemIdFilter" label="@L["ConversionItemId"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="ConversionIdFilter" label="@L["ConversionId"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="StatusFilter" label="@L["Status"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="SaleAmountFilterMin" label="@L["MinSaleAmount"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="SaleAmountFilterMax" label="@L["MaxSaleAmount"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="PayoutFilterMin" label="@L["MinPayout"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="PayoutFilterMax" label="@L["MaxPayout"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="PayoutBonusFilterMin" label="@L["MinPayoutBonus"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="PayoutBonusFilterMax" label="@L["MaxPayoutBonus"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="ConversionTimeFilterMin" label="@L["MinConversionTime"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="ConversionTimeFilterMax" label="@L["MaxConversionTime"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="PlatformFilter" label="@L["Platform"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="SubId1Filter" label="@L["SubId1"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="SubId2Filter" label="@L["SubId2"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="SubId3Filter" label="@L["SubId3"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="ShopIdFilter" label="@L["ShopId"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="ShortKeyFilter" label="@L["ShortKey"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="ShopNameFilter" label="@L["ShopName"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="ProductNameFilter" label="@L["ProductName"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="CategoryNameFilter" label="@L["CategoryName"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="CampaignFilter" label="@L["Campaign"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-select asp-for="IsHappyDayFilter" label="@L["IsHappyDay"].Value" />
+            </abp-column>
+        </abp-row>
+
+        <abp-table striped-rows="true" id="ShopinessConversionsTable">
+            <thead>
+				<tr>
+					<th>@L["Actions"]</th>
+					<th>@L["ConversionItemId"]</th>
+					<th>@L["ConversionId"]</th>
+					<th>@L["Status"]</th>
+					<th>@L["SaleAmount"]</th>
+					<th>@L["Payout"]</th>
+					<th>@L["PayoutBonus"]</th>
+					<th>@L["ConversionTime"]</th>
+					<th>@L["Platform"]</th>
+					<th>@L["SubId1"]</th>
+					<th>@L["SubId2"]</th>
+					<th>@L["SubId3"]</th>
+					<th>@L["ShopId"]</th>
+					<th>@L["ShortKey"]</th>
+					<th>@L["ShopName"]</th>
+					<th>@L["ProductName"]</th>
+					<th>@L["CategoryName"]</th>
+					<th>@L["Campaign"]</th>
+					<th>@L["IsHappyDay"]</th>
+
+				</tr>
+            </thead>
+        </abp-table>
+    </abp-card-body>
+</abp-card>
