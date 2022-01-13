@@ -14,7 +14,7 @@ namespace Gdl.Affiliate.Integrations.ConsoleApp.Jobs
 
     public abstract class BackgroundJobBase : BaseDomainService, IIntegrationJob
     {
-        private IHealthCheckDomainService HealthCheckDomainService { get; set; }
+        public IHealthCheckDomainService HealthCheckDomainService { get; set; }
 
         public virtual async Task Execute()
         {

@@ -2,6 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Gdl.Affiliate.Integrations.Localization;
 using Gdl.Affiliate.Integrations.MultiTenancy;
+using Gdl.Affiliate.Integrations.Shopiness;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;
 using Volo.Abp.Emailing;
@@ -71,6 +72,13 @@ namespace Gdl.Affiliate.Integrations
 #if DEBUG
             context.Services.Replace(ServiceDescriptor.Singleton<IEmailSender, NullEmailSender>());
 #endif
+            
+            ConfigureAdditionalServices(context);
+        }
+        
+        private void ConfigureAdditionalServices(ServiceConfigurationContext context)
+        {
+            context.Services.AddTransient<IShopinessApiConsumer, ShopinessApiConsumer>();
         }
     }
 }

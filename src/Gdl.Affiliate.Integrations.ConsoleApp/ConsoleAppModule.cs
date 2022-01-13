@@ -1,4 +1,5 @@
-﻿using Gdl.Affiliate.Integrations.MongoDB;
+﻿using Gdl.Affiliate.Integrations.MongoDb;
+using Gdl.Affiliate.Integrations.MongoDB;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Volo.Abp.Autofac;
@@ -11,7 +12,8 @@ namespace Gdl.Affiliate.Integrations.ConsoleApp
         typeof(AbpAutofacModule),
         typeof(IntegrationsDomainModule),
         typeof(IntegrationsDomainSharedModule),
-        typeof(IntegrationsMongoDbModule)
+        typeof(IntegrationsMongoDbModule),
+        typeof(ApiMongoDbModule)
     )]
     public class ConsoleAppModule : AbpModule
     {

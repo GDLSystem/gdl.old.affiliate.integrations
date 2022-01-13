@@ -30,4 +30,6 @@ namespace Gdl.Affiliate.Integrations.MongoDB
             modelBuilder.Entity<ShopinessConversion>(b => { b.CollectionName = IntegrationsConsts.DbTablePrefix + "ShopinessConversions"; });
         }
     }
+    
+    
 }
